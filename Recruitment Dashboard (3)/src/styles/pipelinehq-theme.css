@@ -1,0 +1,30 @@
+/* PipelineHQ Premium Theme */
+:root {
+  /* Premium Color Palette */
+  --pipeline-navy: #0F1729;
+  --pipeline-charcoal: #1A202C;
+  --pipeline-blue: #3B82F6;
+  --pipeline-blue-light: #60A5FA;
+  --pipeline-blue-dark: #2563EB;
+
+  /* SLA Indicators */
+  --pipeline-green: #10B981;
+  --pipeline-yellow: #F59E0B;
+  --pipeline-red: #EF4444;
+
+  /* Neutral Palette */
+  --pipeline-gray-50: #F9FAFB;
+  --pipeline-gray-100: #F3F4F6;
+  --pipeline-gray-200: #E5E7EB;
+  --pipeline-gray-300: #D1D5DB;
+  --pipeline-gray-400: #9CA3AF;
+  --pipeline-gray-500: #6B7280;
+  --pipeline-gray-600: #4B5563;
+  --pipeline-gray-700: #374151;
+  --pipeline-gray-800: #1F2937;
+  --pipeline-gray-900: #111827;
+
+  /* Glassmorphism */
+  --pipeline-glass: rgba(255, 255, 255, 0.7);
+  --pipeline-glass-border: rgba(255, 255, 255, 0.18);
+}

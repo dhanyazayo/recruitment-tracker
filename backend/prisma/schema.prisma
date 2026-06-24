@@ -1,0 +1,124 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Stage {
+  FOUND
+  INITIAL_DISCUSSION
+  FIRST_ROUND
+  SECOND_ROUND
+  HR_ROUND
+  SELECTED
+  REJECTED
+}
+
+enum RecruiterRole {
+  RECRUITER
+  SENIOR_RECRUITER
+  RECRUITING_LEAD
+  HR
+}
+
+enum RecruiterStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum CandidateStatus {
+  Active
+  Hold
+  Rejected
+}
+
+model Recruiter {
+  id         String          @id @default(uuid())
+  name       String
+  email      String          @unique
+  role       RecruiterRole
+  team       String?
+  phone      String?
+  status     RecruiterStatus @default(ACTIVE)
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  candidates Candidate[]
+
+  @@index([status])
+}
+
+model Job {
+  id          String      @id @default(uuid())
+  title       String
+  department  String?
+  description String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  candidates  Candidate[]
+}
+
+model Candidate {
+  id             String           @id @default(uuid())
+  name           String
+  email          String?
+  role           String
+  currentStage   Stage            @default(FOUND)
+  status         CandidateStatus  @default(Active)
+  statusTag      String?
+  recruiterId    String?
+  recruiter      Recruiter?     @relation(fields: [recruiterId], references: [id], onDelete: SetNull)
+  jobId          String
+  job            Job            @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  stageEnteredAt DateTime       @default(now())
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  stageHistory   StageHistory[]
+  feedback       Feedback[]
+  interviews     Interview[]
+
+  @@index([currentStage])
+  @@index([jobId])
+  @@index([recruiterId])
+}
+
+model StageHistory {
+  id          String   @id @default(uuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  fromStage   Stage?
+  toStage     Stage
+  movedAt     DateTime @default(now())
+  notes       String?
+
+  @@index([candidateId])
+}
+
+model Feedback {
+  id               String    @id @default(uuid())
+  candidateId      String
+  candidate        Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  stage            Stage
+  interviewerName  String
+  rating           Int?
+  content          String
+  submittedAt      DateTime  @default(now())
+
+  @@index([candidateId])
+  @@index([candidateId, stage])
+}
+
+model Interview {
+  id          String    @id @default(uuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  stage       Stage
+  scheduledAt DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([candidateId])
+  @@index([scheduledAt])
+}
