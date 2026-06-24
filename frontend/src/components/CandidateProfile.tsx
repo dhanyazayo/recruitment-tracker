@@ -21,7 +21,7 @@ import {
   validateMoveToNextStage,
 } from "@/app/candidates/[id]/moveStage";
 import { PipelineProgress } from "@/app/candidates/[id]/PipelineProgress";
-import { ApiError } from "@/lib/api";
+import { API_URL, ApiError } from "@/lib/api";
 import { postClientFeedback, putClientCandidate } from "@/lib/clientApi";
 import { getNextStage, getStageLabel, STAGE_OPTIONS } from "@/lib/stages";
 import type { CandidateDetail, FeedbackEntry } from "@/lib/types";
@@ -342,8 +342,7 @@ export function CandidateProfile({ candidate: initialCandidate }: CandidateProfi
     setActionError("");
     setFeedbackLoading(key);
     try {
-      const apiBase = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
-      const response = await fetch(`${apiBase}/api/feedback`, {
+      const response = await fetch(`${API_URL}/api/feedback`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

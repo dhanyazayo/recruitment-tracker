@@ -1,4 +1,7 @@
-const API_BASE = process.env.API_URL ?? "http://localhost:3001";
+export const API_URL = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001").replace(
+  /\/$/,
+  "",
+);
 
 export class ApiError extends Error {
   constructor(
@@ -16,7 +19,7 @@ async function fetchApi<T>(path: string, init?: RequestInit): Promise<T> {
     headers.set("Content-Type", "application/json");
   }
 
-  const response = await fetch(`${API_BASE}${path}`, {
+  const response = await fetch(`${API_URL}${path}`, {
     cache: "no-store",
     ...init,
     headers,
@@ -46,7 +49,11 @@ export type CandidateInput = {
 };
 
 export function getApiBaseUrl() {
-  return API_BASE;
+  return API_URL;
+}
+
+export function getFetchApiBaseUrl() {
+  return API_URL;
 }
 
 export async function getDashboardSummary() {

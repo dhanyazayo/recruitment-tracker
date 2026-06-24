@@ -1,4 +1,4 @@
-import { ApiError } from "@/lib/api";
+import { API_URL, ApiError } from "@/lib/api";
 import { getClientCandidate } from "@/lib/clientApi";
 import { getNextStage, getStageLabel } from "@/lib/stages";
 import type { CandidateDetail, FeedbackEntry } from "@/lib/types";
@@ -6,8 +6,6 @@ import type { CandidateDetail, FeedbackEntry } from "@/lib/types";
 export const FEEDBACK_REQUIRED_MESSAGE =
   "Feedback is required before moving to next stage";
 export const MOVE_SUCCESS_MESSAGE = "Moved to next stage successfully";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
 
 export function hasFeedbackForCurrentStage(
   feedback: FeedbackEntry[],
@@ -48,7 +46,7 @@ export function validateMoveToNextStage(
 }
 
 export async function postMoveToNextStage(candidateId: string, nextStage: string) {
-  const response = await fetch(`${API_BASE}/api/pipeline/move`, {
+  const response = await fetch(`${API_URL}/api/pipeline/move`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ candidateId, nextStage, targetStage: nextStage }),

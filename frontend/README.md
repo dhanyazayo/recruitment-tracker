@@ -26,5 +26,5 @@ Open [http://localhost:3000](http://localhost:3000).
 Set the backend URL in `.env.local`:
 
 ```
-API_URL=http://localhost:3001
+NEXT_PUBLIC_API_URL=http://localhost:3001
 ```

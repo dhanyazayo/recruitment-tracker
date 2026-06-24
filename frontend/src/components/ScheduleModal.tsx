@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { API_URL } from "@/lib/api";
 
 const STAGES = ["Found", "Initial", "First Round", "Second Round", "HR Round"] as const;
-
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
 
 type ScheduleModalProps = {
   candidateId: string;
@@ -32,7 +31,7 @@ export function ScheduleModal({ candidateId, candidateName, onClose }: ScheduleM
 
     setSubmitting(true);
     try {
-      const response = await fetch(`${API_BASE}/api/interviews`, {
+      const response = await fetch(`${API_URL}/api/interviews`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ candidateId, stage, scheduledAt }),

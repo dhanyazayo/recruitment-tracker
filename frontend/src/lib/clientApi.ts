@@ -1,7 +1,5 @@
-import { ApiError } from "./api";
+import { API_URL, ApiError } from "./api";
 import type { CandidateDetail, CandidateStatus, FeedbackEntry, FeedbackInput } from "./types";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
 
 async function clientFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const headers = new Headers(init?.headers);
@@ -9,7 +7,7 @@ async function clientFetch<T>(path: string, init?: RequestInit): Promise<T> {
     headers.set("Content-Type", "application/json");
   }
 
-  const response = await fetch(`${API_BASE}${path}`, {
+  const response = await fetch(`${API_URL}${path}`, {
     ...init,
     headers,
   });
