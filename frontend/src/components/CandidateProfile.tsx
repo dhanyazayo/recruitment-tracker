@@ -402,12 +402,12 @@ export function CandidateProfile({ candidate: initialCandidate }: CandidateProfi
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:px-8">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-[#1A1C1E] sm:text-4xl">
+        <h1 className="text-xl font-bold text-[#1A1C1E] sm:text-2xl lg:text-3xl">
           Candidate Profile &amp; Feedback Management
         </h1>
-        <p className="mx-auto mt-3 max-w-3xl text-base text-gray-600 sm:text-lg">
+        <p className="mx-auto mt-3 max-w-3xl text-sm text-gray-600 sm:text-base lg:text-lg">
           Complete candidate profiles with feedback tracking, activity timeline, and
           real-time status monitoring.
         </p>
@@ -424,12 +424,12 @@ export function CandidateProfile({ candidate: initialCandidate }: CandidateProfi
         </p>
       ) : null}
 
-      <div className="grid gap-8 lg:grid-cols-3">
-        <div className="lg:col-span-2">
+      <div className="flex flex-col gap-8 lg:flex-row">
+        <div className="min-w-0 flex-1 lg:flex-[2]">
           <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
-            <div className="border-b border-gray-200 bg-white p-6">
+            <div className="border-b border-gray-200 bg-white p-4 sm:p-6">
               <div className="mb-6 space-y-4">
-                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div className="flex min-w-0 flex-1 items-start gap-4">
                     <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#F47920] to-purple-500 text-xl font-bold text-white">
                       {getInitials(candidate.name)}
@@ -466,13 +466,14 @@ export function CandidateProfile({ candidate: initialCandidate }: CandidateProfi
                     </div>
                   </div>
 
-                  <div className="flex shrink-0 flex-col gap-3 md:items-end">
+                  <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:items-end">
                     <MoveToNextStageButton
                       onClick={handleMoveToNextStage}
                       loading={actionLoading === "next"}
                       disabled={moveDisabled}
+                      className="w-full sm:w-auto"
                     />
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex w-full flex-wrap gap-2">
                       {isOnHold ? (
                         <ActionButton
                           label="Resume Candidate"
@@ -514,7 +515,7 @@ export function CandidateProfile({ candidate: initialCandidate }: CandidateProfi
                 <PipelineProgress currentStage={candidate.currentStage} />
               </div>
 
-              <div className="flex gap-1 border-b border-gray-200">
+              <div className="flex gap-1 overflow-x-auto border-b border-gray-200">
                 {TABS.map((tab) => {
                   const Icon = tab.icon;
                   const active = activeTab === tab.id;
@@ -537,7 +538,7 @@ export function CandidateProfile({ candidate: initialCandidate }: CandidateProfi
               </div>
             </div>
 
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               {activeTab === "profile" && (
                 <dl className="grid gap-6 text-sm sm:grid-cols-2">
                   <div>
@@ -606,18 +607,18 @@ export function CandidateProfile({ candidate: initialCandidate }: CandidateProfi
 
                   <div className="space-y-4 rounded-xl border border-gray-100 bg-gray-50 p-4">
                     <h3 className="text-sm font-semibold text-gray-800">Quick Feedback</h3>
-                    <div className="grid gap-3 sm:grid-cols-[1fr_auto_auto]">
+                    <div className="flex flex-col gap-3 sm:grid sm:grid-cols-[1fr_auto_auto]">
                       <input
                         type="text"
                         value={quickComments}
                         onChange={(e) => setQuickComments(e.target.value)}
                         placeholder="Comments"
-                        className="rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-[#F47920]"
+                        className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-[#F47920]"
                       />
                       <select
                         value={quickRating}
                         onChange={(e) => setQuickRating(e.target.value)}
-                        className="rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-[#F47920]"
+                        className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-[#F47920] sm:w-auto"
                       >
                         {RATING_OPTIONS.map((value) => (
                           <option key={value} value={value}>
@@ -635,7 +636,7 @@ export function CandidateProfile({ candidate: initialCandidate }: CandidateProfi
                             rating: Number(quickRating),
                           })
                         }
-                        className="rounded-lg bg-[#F47920] px-4 py-2 text-sm font-medium text-white hover:bg-[#D96510] disabled:opacity-60"
+                        className="w-full rounded-lg bg-[#F47920] px-4 py-2 text-sm font-medium text-white hover:bg-[#D96510] disabled:opacity-60 sm:w-auto"
                       >
                         {feedbackLoading === "quick" ? "Adding..." : "Quick Add Feedback"}
                       </button>
@@ -702,7 +703,7 @@ export function CandidateProfile({ candidate: initialCandidate }: CandidateProfi
                           rating: Number(fullRating),
                         })
                       }
-                      className="rounded-lg bg-[#1A1C1E] px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-60"
+                      className="w-full rounded-lg bg-[#1A1C1E] px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-60 sm:w-auto"
                     >
                       {feedbackLoading === "full" ? "Submitting..." : "Submit Feedback"}
                     </button>
@@ -764,8 +765,8 @@ export function CandidateProfile({ candidate: initialCandidate }: CandidateProfi
           </div>
         </div>
 
-        <div className="space-y-6">
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
+        <div className="w-full space-y-6 lg:w-80 lg:shrink-0">
+          <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-lg sm:p-6">
             <h3 className="mb-4 font-semibold text-[#1A1C1E]">SLA Status</h3>
             <div className="space-y-4">
               <div
@@ -819,7 +820,7 @@ export function CandidateProfile({ candidate: initialCandidate }: CandidateProfi
             </div>
           </div>
 
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
+          <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-lg sm:p-6">
             <h3 className="mb-4 font-semibold text-[#1A1C1E]">Quick Feedback</h3>
             <div className="space-y-4">
               {panelQuickError ? (
@@ -906,7 +907,7 @@ function ActionButton({
       type="button"
       onClick={onClick}
       disabled={disabled || loading}
-      className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${styles[variant]}`}
+      className={`flex w-full items-center justify-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto ${styles[variant]}`}
     >
       <Icon className="h-3.5 w-3.5" />
       {loading ? "..." : label}

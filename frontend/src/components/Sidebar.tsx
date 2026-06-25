@@ -118,14 +118,14 @@ export function Sidebar({ showRecruiters }: SidebarProps) {
   };
 
   return (
-    <aside className="fixed bottom-0 left-0 top-16 z-40 w-[250px] overflow-y-auto border-r border-gray-200 bg-[#F8F9FA]">
-      <nav className="space-y-6 p-4">
+    <aside className="w-full shrink-0 border-b border-gray-200 bg-[#F8F9FA] lg:fixed lg:bottom-0 lg:left-0 lg:top-16 lg:z-40 lg:w-[250px] lg:overflow-y-auto lg:border-b-0 lg:border-r">
+      <nav className="flex gap-1 overflow-x-auto p-2 sm:p-4 lg:block lg:space-y-6 lg:overflow-visible">
         {sections.map((section) => (
-          <div key={section.title}>
-            <p className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+          <div key={section.title} className="shrink-0 lg:shrink">
+            <p className="mb-2 hidden px-3 text-[11px] font-semibold uppercase tracking-wider text-gray-400 lg:block">
               {section.title}
             </p>
-            <div className="space-y-1">
+            <div className="flex gap-1 lg:block lg:space-y-1">
               {section.items
                 .filter((item) => !item.hidden)
                 .map((item) => {
@@ -136,7 +136,7 @@ export function Sidebar({ showRecruiters }: SidebarProps) {
                     <Link
                       key={`${section.title}-${item.label}`}
                       href={getHref(item)}
-                      className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                      className={`flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition-colors sm:gap-3 sm:py-2.5 lg:shrink ${
                         active
                           ? "bg-[#FEF3E8] text-[#F47920]"
                           : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
@@ -147,9 +147,9 @@ export function Sidebar({ showRecruiters }: SidebarProps) {
                           active ? "text-[#F47920]" : "text-gray-400"
                         }`}
                       />
-                      <span className="flex-1">{item.label}</span>
+                      <span className="whitespace-nowrap lg:flex-1">{item.label}</span>
                       {active ? (
-                        <ChevronRight className="h-4 w-4 shrink-0 text-[#F47920]" />
+                        <ChevronRight className="hidden h-4 w-4 shrink-0 text-[#F47920] lg:block" />
                       ) : null}
                     </Link>
                   );

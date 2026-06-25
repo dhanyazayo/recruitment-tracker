@@ -8,16 +8,16 @@ export default async function SlaBreakdownPage() {
     const data = await getSlaStatus();
 
     return (
-      <div className="-mx-6 -mt-8 bg-gradient-to-b from-gray-50 to-white px-6 py-10">
-        <div className="mx-auto max-w-7xl">
-          <header className="mb-12">
-            <h1 className="mb-4 text-4xl font-bold text-gray-900">SLA Breakdown</h1>
-            <p className="text-xl text-gray-600">
+      <div className="bg-gradient-to-b from-gray-50 to-white py-8 sm:py-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <header className="mb-8 sm:mb-12">
+            <h1 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">SLA Breakdown</h1>
+            <p className="text-base text-gray-600 sm:text-lg lg:text-xl">
               Monitor all candidates and their Service Level Agreement status
             </p>
           </header>
 
-          <section className="mb-12 grid gap-6 md:grid-cols-4">
+          <section className="mb-8 grid grid-cols-1 gap-4 sm:mb-12 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
             <StatCard
               label="Total Candidates"
               value={data.summary.total}
@@ -56,9 +56,9 @@ export default async function SlaBreakdownPage() {
             />
           </section>
 
-          <section className="mb-8 rounded-2xl border border-[#FCD5A8] bg-[#FEF3E8] p-6">
+          <section className="mb-8 rounded-2xl border border-[#FCD5A8] bg-[#FEF3E8] p-4 sm:p-6">
             <h2 className="mb-4 font-semibold text-gray-900">SLA Targets by Stage</h2>
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-5">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
               {data.slaTargets.map((target) => (
                 <div
                   key={target.stage}
@@ -115,8 +115,8 @@ export default async function SlaBreakdownPage() {
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
     return (
-      <div className="space-y-4">
-        <h1 className="text-2xl font-bold">SLA Breakdown</h1>
+      <div className="mx-auto max-w-7xl space-y-4 px-4 sm:px-6 lg:px-8">
+        <h1 className="text-xl font-bold sm:text-2xl">SLA Breakdown</h1>
         <BackendError message={message} />
       </div>
     );
@@ -192,7 +192,7 @@ function CandidateGroup({
 
   return (
     <section className="mb-8">
-      <div className="mb-4 flex items-center gap-2">
+      <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-2">
         {headerIcon}
         <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
         <span className={`rounded-full px-3 py-1 text-sm font-semibold ${badgeClass}`}>
@@ -233,7 +233,7 @@ function CandidateCard({
 
   return (
     <div
-      className={`rounded-xl bg-white p-6 transition-shadow hover:shadow-lg ${styles.card}`}
+      className={`rounded-xl bg-white p-4 transition-shadow hover:shadow-lg sm:p-6 ${styles.card}`}
     >
       <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex items-center gap-4">

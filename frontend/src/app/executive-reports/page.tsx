@@ -15,8 +15,8 @@ export default async function ExecutiveReportsPage() {
     const maxStageCount = Math.max(...dashboard.pipelineStages.map((stage) => stage.count), 1);
 
     return (
-      <div className="-mx-6 -mt-8 bg-gradient-to-b from-gray-50 to-white px-6 py-10">
-        <div className="mx-auto max-w-5xl">
+      <div className="bg-gradient-to-b from-gray-50 to-white py-8 sm:py-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <header className="mb-10 text-center">
             <h1 className="mb-3 text-3xl font-bold text-gray-900 sm:text-4xl">
               Executive Hiring Analytics
@@ -28,7 +28,7 @@ export default async function ExecutiveReportsPage() {
           </header>
 
           <div className="overflow-hidden rounded-3xl border-2 border-gray-200 bg-gradient-to-br from-gray-50 to-white shadow-xl">
-            <div className="bg-gradient-to-r from-[#F47920] to-purple-600 p-6 sm:p-8">
+            <div className="bg-gradient-to-r from-[#F47920] to-purple-600 p-4 sm:p-6 lg:p-8">
               <div className="mb-6">
                 <h2 className="text-xl font-bold text-white sm:text-2xl">
                   Executive Hiring Dashboard
@@ -36,7 +36,7 @@ export default async function ExecutiveReportsPage() {
                 <p className="mt-1 text-sm text-[#FEE9D1]">Real-time overview from backend API</p>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <HeaderStatCard label="Active Candidates" value={dashboard.quickStats.active} />
                 <HeaderStatCard label="Selected" value={dashboard.quickStats.selected} />
                 <HeaderStatCard
@@ -48,7 +48,7 @@ export default async function ExecutiveReportsPage() {
               </div>
             </div>
 
-            <div className="space-y-8 p-6 sm:p-8">
+            <div className="space-y-8 p-4 sm:p-6 lg:p-8">
               <div className="grid gap-8 lg:grid-cols-2">
                 <section>
                   <h3 className="mb-4 text-lg font-semibold text-gray-900">Pipeline Stages</h3>
@@ -148,8 +148,8 @@ export default async function ExecutiveReportsPage() {
                 {recruiterStats.length === 0 ? (
                   <p className="text-sm text-gray-500">No recruiter data available.</p>
                 ) : (
-                  <div className="overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
-                    <div className="grid grid-cols-4 gap-4 border-b border-gray-200 bg-white p-4 text-sm font-medium text-gray-600">
+                  <div className="overflow-x-auto rounded-xl border border-gray-200 bg-gray-50">
+                    <div className="grid min-w-[480px] grid-cols-4 gap-4 border-b border-gray-200 bg-white p-4 text-sm font-medium text-gray-600">
                       <div>Recruiter</div>
                       <div>Active</div>
                       <div>Selected</div>
@@ -158,7 +158,7 @@ export default async function ExecutiveReportsPage() {
                     {recruiterStats.map((stat, index) => (
                       <div
                         key={stat.recruiter}
-                        className={`grid grid-cols-4 gap-4 border-b border-gray-200 p-4 text-sm last:border-0 ${
+                        className={`grid min-w-[480px] grid-cols-4 gap-4 border-b border-gray-200 p-4 text-sm last:border-0 ${
                           index % 2 === 0 ? "bg-white" : "bg-gray-50"
                         }`}
                       >
@@ -189,8 +189,8 @@ export default async function ExecutiveReportsPage() {
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
     return (
-      <div className="space-y-4">
-        <h1 className="text-2xl font-bold">Executive Reports</h1>
+      <div className="mx-auto max-w-7xl space-y-4 px-4 sm:px-6 lg:px-8">
+        <h1 className="text-xl font-bold sm:text-2xl">Executive Reports</h1>
         <BackendError message={message} />
       </div>
     );

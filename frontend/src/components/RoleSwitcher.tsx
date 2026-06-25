@@ -28,7 +28,7 @@ export function RoleSwitcher({ currentRole }: RoleSwitcherProps) {
         value={currentRole}
         onChange={handleChange}
         disabled={pending}
-        className="rounded-md border border-gray-300 bg-white px-2 py-1 text-sm text-gray-700"
+        className="w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-sm text-gray-700 sm:w-auto"
         aria-label="Switch user role"
       >
         {(Object.keys(USER_ROLE_LABELS) as UserRole[]).map((role) => (

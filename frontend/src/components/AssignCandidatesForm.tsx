@@ -28,7 +28,7 @@ export function AssignCandidatesForm({
   const [state, formAction, pending] = useActionState(action, initialState);
 
   return (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
       <section>
         <h1 className="text-2xl font-bold">Assign Candidates</h1>
         <p className="mt-1 text-sm text-gray-600">
@@ -46,7 +46,7 @@ export function AssignCandidatesForm({
 
       <form
         action={formAction}
-        className="space-y-4 rounded-lg border border-gray-200 bg-white p-6"
+        className="flex flex-col gap-3 rounded-lg border border-gray-200 bg-white p-4 sm:p-6"
       >
         <p className="text-sm text-gray-600">
           Select candidates to assign to {recruiterName}. Inactive recruiters cannot receive new
@@ -92,17 +92,17 @@ export function AssignCandidatesForm({
           </p>
         ) : null}
 
-        <div className="flex gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row">
           <button
             type="submit"
             disabled={pending}
-            className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-60"
+            className="w-full rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-60 sm:w-auto"
           >
             {pending ? "Assigning..." : "Assign Selected"}
           </button>
           <Link
             href={`/recruiters/${recruiterId}`}
-            className="rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="w-full rounded-md border border-gray-300 px-4 py-2 text-center text-sm font-medium text-gray-700 hover:bg-gray-50 sm:w-auto"
           >
             Cancel
           </Link>

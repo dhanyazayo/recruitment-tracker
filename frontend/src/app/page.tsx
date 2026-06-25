@@ -15,12 +15,12 @@ export default async function DashboardPage() {
     );
 
     return (
-      <div className="-mx-6 -mt-8 bg-gradient-to-b from-gray-50 to-white px-6 py-10">
-        <div className="mx-auto max-w-4xl">
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
-            <header className="mb-6 flex items-center justify-between">
-              <h1 className="text-xl font-semibold text-gray-900">Recruitment Overview</h1>
-              <div className="flex gap-2">
+      <div className="bg-gradient-to-b from-gray-50 to-white py-8 sm:py-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-lg sm:p-6">
+            <header className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <h1 className="text-lg font-semibold text-gray-900 sm:text-xl lg:text-2xl">Recruitment Overview</h1>
+              <div className="flex flex-wrap gap-2">
                 <span className="rounded-lg bg-[#FEF3E8] px-3 py-1.5 text-sm font-medium text-[#F47920]">
                   Live
                 </span>
@@ -30,7 +30,7 @@ export default async function DashboardPage() {
               </div>
             </header>
 
-            <section className="mb-6 grid grid-cols-3 gap-4">
+            <section className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               <StatCard label="Active" value={data.quickStats.active} variant="active" />
               <StatCard label="Selected" value={data.quickStats.selected} variant="selected" />
               <StatCard label="At Risk" value={data.quickStats.atRisk} variant="atRisk" />
@@ -152,8 +152,8 @@ export default async function DashboardPage() {
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
     return (
-      <div className="space-y-4">
-        <h1 className="text-2xl font-bold">Recruitment Overview</h1>
+      <div className="mx-auto max-w-7xl space-y-4 px-4 sm:px-6 lg:px-8">
+        <h1 className="text-xl font-bold sm:text-2xl">Recruitment Overview</h1>
         <BackendError message={message} />
       </div>
     );
@@ -188,9 +188,9 @@ function StatCard({
   }[variant];
 
   return (
-    <div className={`rounded-xl p-4 ${styles.card}`}>
-      <p className={`mb-1 text-xs font-medium ${styles.label}`}>{label}</p>
-      <p className={`text-2xl font-bold ${styles.value}`}>{value}</p>
+    <div className={`rounded-xl p-4 sm:p-6 ${styles.card}`}>
+      <p className={`mb-1 text-xs font-medium sm:text-sm ${styles.label}`}>{label}</p>
+      <p className={`text-xl font-bold sm:text-2xl ${styles.value}`}>{value}</p>
     </div>
   );
 }

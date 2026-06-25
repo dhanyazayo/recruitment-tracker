@@ -67,25 +67,25 @@ export default async function CandidatesPage({
           : "Active Candidates";
 
     return (
-      <div className="-mx-6 -mt-8 bg-gradient-to-b from-gray-50 to-white px-6 py-10">
-        <div className="mx-auto max-w-7xl">
-          <header className="mb-8 flex items-start justify-between gap-4">
+      <div className="bg-gradient-to-b from-gray-50 to-white py-8 sm:py-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <header className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <h1 className="mb-1 text-2xl font-bold text-gray-900">{pageTitle}</h1>
-              <p className="text-sm text-gray-500">
+              <h1 className="mb-1 text-xl font-bold text-gray-900 sm:text-2xl">{pageTitle}</h1>
+              <p className="text-sm text-gray-500 sm:text-base">
                 Search, filter and manage every candidate in the pipeline
               </p>
             </div>
             <Link
               href="/candidates/new"
-              className="flex shrink-0 items-center gap-2 rounded-xl bg-[#F47920] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#D96510]"
+              className="mb-2 flex w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-[#F47920] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#D96510] sm:mb-0 sm:w-auto"
             >
               <PlusIcon />
               Add Candidate
             </Link>
           </header>
 
-          <section className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <section className="mb-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
             <div className="flex flex-wrap items-center gap-3">
               <SummaryPill
                 label="Total"
@@ -135,7 +135,7 @@ export default async function CandidatesPage({
                     ].map((heading) => (
                       <th
                         key={heading}
-                        className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wider text-gray-500"
+                        className="px-2 py-3.5 text-xs font-semibold uppercase tracking-wider text-gray-500 sm:px-4"
                       >
                         {heading}
                       </th>
@@ -145,7 +145,7 @@ export default async function CandidatesPage({
                 <tbody>
                   {candidates.length === 0 ? (
                     <tr>
-                      <td colSpan={8} className="px-5 py-10 text-center text-sm text-gray-500">
+                      <td colSpan={8} className="px-2 py-10 text-center text-sm text-gray-500 sm:px-4">
                         No candidates found for this filter.
                       </td>
                     </tr>
@@ -157,7 +157,7 @@ export default async function CandidatesPage({
                         index % 2 === 1 ? "bg-gray-50/30" : ""
                       }`}
                     >
-                      <td className="px-5 py-4">
+                      <td className="px-2 py-4 sm:px-4">
                         <div className="flex items-center gap-3">
                           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#F47920]/20 bg-gradient-to-br from-[#F47920]/20 to-[#F47920]/5">
                             <span className="text-xs font-bold text-[#F47920]">
@@ -173,7 +173,7 @@ export default async function CandidatesPage({
                         </div>
                       </td>
                       <td className="px-5 py-4 text-gray-600">{candidate.role}</td>
-                      <td className="px-5 py-4">
+                      <td className="px-2 py-4 sm:px-4">
                         <span
                           className={`rounded-lg px-2.5 py-1 text-xs font-medium ${
                             stageStyle[candidate.stage] ?? "bg-gray-100 text-gray-700"
@@ -183,22 +183,22 @@ export default async function CandidatesPage({
                         </span>
                       </td>
                       <td className="px-5 py-4 text-gray-500">{candidate.recruiter}</td>
-                      <td className="px-5 py-4">
+                      <td className="px-2 py-4 sm:px-4">
                         <span className={`text-sm font-semibold ${daysColor(candidate.daysInStage)}`}>
                           {candidate.daysInStage}d
                         </span>
                       </td>
-                      <td className="px-5 py-4">
+                      <td className="px-2 py-4 sm:px-4">
                         <SlaBadge status={candidate.slaStatus} />
                       </td>
-                      <td className="px-5 py-4">
+                      <td className="px-2 py-4 sm:px-4">
                         {candidate.hasPendingFeedback ? (
                           <span className="text-xs font-medium text-amber-700">Pending</span>
                         ) : (
                           <span className="text-xs text-gray-400">Submitted</span>
                         )}
                       </td>
-                      <td className="px-5 py-4">
+                      <td className="px-2 py-4 sm:px-4">
                         <CandidateActions
                           candidateId={candidate.id}
                           candidateName={candidate.name}
@@ -220,8 +220,8 @@ export default async function CandidatesPage({
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
     return (
-      <div className="space-y-4">
-        <h1 className="text-2xl font-bold text-gray-900">All Candidates</h1>
+      <div className="mx-auto max-w-7xl space-y-4 px-4 sm:px-6 lg:px-8">
+        <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">All Candidates</h1>
         <BackendError message={message} />
       </div>
     );

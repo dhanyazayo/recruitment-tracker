@@ -15,10 +15,12 @@ export async function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header role={role} />
-      <Sidebar showRecruiters={showRecruiters} />
-      <main className="ml-[250px] min-h-[calc(100vh-4rem)] overflow-y-auto p-6">
-        {children}
-      </main>
+      <div className="flex min-h-[calc(100vh-4rem)] flex-col lg:block">
+        <Sidebar showRecruiters={showRecruiters} />
+        <main className="min-h-[calc(100vh-4rem)] flex-1 overflow-y-auto p-4 sm:p-6 lg:ml-[250px]">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }

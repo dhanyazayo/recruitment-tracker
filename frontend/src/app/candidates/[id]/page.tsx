@@ -24,8 +24,8 @@ export default async function CandidateProfilePage({ params }: CandidateProfileP
 
     const message = error instanceof Error ? error.message : "Unknown error";
     return (
-      <div className="space-y-4">
-        <h1 className="text-2xl font-bold text-gray-900">Candidate Profile</h1>
+      <div className="mx-auto max-w-7xl space-y-4 px-4 sm:px-6 lg:px-8">
+        <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">Candidate Profile</h1>
         <BackendError message={message} />
       </div>
     );

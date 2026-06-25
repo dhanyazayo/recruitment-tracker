@@ -26,12 +26,12 @@ export function CandidateStatusFilter({ value }: { value: CandidateStatusFilter 
   }
 
   return (
-    <label className="flex items-center gap-2 text-sm text-gray-600">
+    <label className="flex w-full flex-col gap-2 text-sm text-gray-600 sm:w-auto sm:flex-row sm:items-center">
       <span className="font-medium">Status</span>
       <select
         value={value}
         onChange={(event) => handleChange(event.target.value as CandidateStatusFilter)}
-        className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-[#F47920] focus:outline-none focus:ring-2 focus:ring-[#F47920]/20"
+        className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-[#F47920] focus:outline-none focus:ring-2 focus:ring-[#F47920]/20 sm:w-auto"
       >
         {FILTER_OPTIONS.map((option) => (
           <option key={option.value} value={option.value}>

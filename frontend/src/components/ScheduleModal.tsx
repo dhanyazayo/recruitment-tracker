@@ -72,7 +72,7 @@ export function ScheduleModal({ candidateId, candidateName, onClose }: ScheduleM
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 p-5">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3 p-4 sm:p-6">
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">Candidate Name</label>
             <input
@@ -130,18 +130,18 @@ export function ScheduleModal({ candidateId, candidateName, onClose }: ScheduleM
             {errors.time && <p className="mt-1 text-xs text-red-500">{errors.time}</p>}
           </div>
 
-          <div className="flex justify-end gap-2 pt-2">
+          <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:justify-end">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50"
+              className="w-full rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 sm:w-auto"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submitting}
-              className="rounded-lg bg-[#F47920] px-4 py-2 text-sm font-semibold text-white hover:bg-[#D96510] disabled:opacity-60"
+              className="w-full rounded-lg bg-[#F47920] px-4 py-2 text-sm font-semibold text-white hover:bg-[#D96510] disabled:opacity-60 sm:w-auto"
             >
               {submitting ? "Submitting..." : "Submit"}
             </button>

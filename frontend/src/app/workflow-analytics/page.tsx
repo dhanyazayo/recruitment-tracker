@@ -23,8 +23,8 @@ export default async function WorkflowAnalyticsPage() {
     const summary = buildSummaryStats(dashboard.pipelineStages, stageMetrics, outcomes, totalInPipeline);
 
     return (
-      <div className="-mx-6 -mt-8 bg-gradient-to-br from-gray-50 via-[#FEF3E8]/30 to-purple-50/30 px-6 py-10">
-        <div className="mx-auto max-w-4xl">
+      <div className="bg-gradient-to-br from-gray-50 via-[#FEF3E8]/30 to-purple-50/30 py-8 sm:py-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <header className="mb-16 text-center">
             <h1 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
               Hiring Workflow &amp; Stage Analytics
@@ -43,7 +43,7 @@ export default async function WorkflowAnalyticsPage() {
 
               return (
                 <div key={stage.currentStage} className="w-full">
-                  <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg sm:p-8">
+                  <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-lg sm:p-6 lg:p-8">
                     <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                       <div className="flex items-center gap-6">
                         <div
@@ -95,7 +95,7 @@ export default async function WorkflowAnalyticsPage() {
             })}
           </div>
 
-          <section className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <section className="mt-12 grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
             <SummaryCard label="Total Active" value={String(summary.totalActive)} />
             <SummaryCard
               label="Avg per Stage"
@@ -116,7 +116,7 @@ export default async function WorkflowAnalyticsPage() {
 
           <section className="mt-12">
             <h2 className="mb-4 text-lg font-semibold text-gray-900">Pipeline Health</h2>
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               <HealthStatCard
                 label="On track"
                 value={dashboard.pipelineHealth.onTrack}
@@ -136,13 +136,13 @@ export default async function WorkflowAnalyticsPage() {
           </section>
 
           <section className="mt-12">
-            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+            <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
               <h2 className="mb-4 text-lg font-semibold text-gray-900">Recruiter Workflow</h2>
               {recruiters.length === 0 ? (
                 <p className="text-sm text-gray-500">No recruiter data available.</p>
               ) : (
-                <div className="overflow-hidden rounded-xl border border-gray-200">
-                  <div className="grid grid-cols-2 gap-4 border-b border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-600 sm:grid-cols-5">
+                <div className="overflow-x-auto rounded-xl border border-gray-200">
+                  <div className="grid min-w-[480px] grid-cols-2 gap-4 border-b border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-600 sm:grid-cols-5">
                     <div className="sm:col-span-1">Recruiter</div>
                     <div>Active</div>
                     <div>Selected</div>
@@ -152,7 +152,7 @@ export default async function WorkflowAnalyticsPage() {
                   {recruiters.map((recruiter, index) => (
                     <div
                       key={recruiter.id}
-                      className={`grid grid-cols-2 gap-4 border-b border-gray-100 px-4 py-3 text-sm last:border-0 sm:grid-cols-5 ${
+                      className={`grid min-w-[480px] grid-cols-2 gap-4 border-b border-gray-100 px-4 py-3 text-sm last:border-0 sm:grid-cols-5 ${
                         index % 2 === 0 ? "bg-white" : "bg-gray-50/50"
                       }`}
                     >
@@ -218,8 +218,8 @@ export default async function WorkflowAnalyticsPage() {
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
     return (
-      <div className="space-y-4">
-        <h1 className="text-2xl font-bold">Workflow Analytics</h1>
+      <div className="mx-auto max-w-7xl space-y-4 px-4 sm:px-6 lg:px-8">
+        <h1 className="text-xl font-bold sm:text-2xl">Workflow Analytics</h1>
         <BackendError message={message} />
       </div>
     );

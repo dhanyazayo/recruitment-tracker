@@ -35,10 +35,10 @@ export default async function RecruiterProfilePage({
     }
 
     return (
-      <div className="space-y-6">
-        <section className="flex items-start justify-between gap-4">
+      <div className="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
+        <section className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold">{recruiter.name}</h1>
+            <h1 className="text-xl font-bold sm:text-2xl">{recruiter.name}</h1>
             <p className="mt-1 text-sm text-gray-600">
               <Link href="/recruiters" className="text-gray-500 hover:text-gray-700">
                 Recruiters
@@ -48,17 +48,17 @@ export default async function RecruiterProfilePage({
             </p>
           </div>
           {canManage ? (
-            <div className="flex flex-wrap gap-2">
+            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:flex-wrap">
               <Link
                 href={`/recruiters/${recruiter.id}/edit`}
-                className="rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                className="w-full rounded-md border border-gray-300 px-4 py-2 text-center text-sm font-medium text-gray-700 hover:bg-gray-50 sm:w-auto"
               >
                 Edit
               </Link>
               {recruiter.statusValue === "ACTIVE" ? (
                 <Link
                   href={`/recruiters/${recruiter.id}/assign`}
-                  className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+                  className="w-full rounded-md bg-gray-900 px-4 py-2 text-center text-sm font-medium text-white hover:bg-gray-800 sm:w-auto"
                 >
                   Assign Candidates
                 </Link>
@@ -67,8 +67,8 @@ export default async function RecruiterProfilePage({
           ) : null}
         </section>
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-lg border border-gray-200 bg-white p-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="rounded-lg border border-gray-200 bg-white p-4 sm:p-6">
             <h2 className="mb-3 text-lg font-semibold">Profile</h2>
             <dl className="space-y-2 text-sm">
               <div className="flex justify-between gap-4">
@@ -103,7 +103,7 @@ export default async function RecruiterProfilePage({
             ) : null}
           </div>
 
-          <div className="rounded-lg border border-gray-200 bg-white p-4">
+          <div className="rounded-lg border border-gray-200 bg-white p-4 sm:p-6">
             <h2 className="mb-3 text-lg font-semibold">Performance</h2>
             <dl className="space-y-2 text-sm">
               <div className="flex justify-between gap-4">
@@ -129,7 +129,7 @@ export default async function RecruiterProfilePage({
           </div>
         </div>
 
-        <section className="rounded-lg border border-gray-200 bg-white p-4">
+        <section className="rounded-lg border border-gray-200 bg-white p-4 sm:p-6">
           <h2 className="mb-4 text-lg font-semibold">Assigned Candidates</h2>
           {recruiter.candidates.length === 0 ? (
             <p className="text-sm text-gray-500">No candidates assigned yet.</p>
@@ -174,8 +174,8 @@ export default async function RecruiterProfilePage({
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
     return (
-      <div className="space-y-4">
-        <h1 className="text-2xl font-bold">Recruiter Profile</h1>
+      <div className="mx-auto max-w-7xl space-y-4 px-4 sm:px-6 lg:px-8">
+        <h1 className="text-xl font-bold sm:text-2xl">Recruiter Profile</h1>
         <BackendError message={message} />
       </div>
     );

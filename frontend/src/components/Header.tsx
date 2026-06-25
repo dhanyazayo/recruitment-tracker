@@ -10,20 +10,20 @@ type HeaderProps = {
 
 export function Header({ role }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-50 h-16 shrink-0 border-b border-gray-200 bg-white">
-      <div className="flex h-full items-center justify-between px-6">
+    <header className="sticky top-0 z-50 min-h-16 shrink-0 border-b border-gray-200 bg-white py-2 sm:h-16 sm:py-0">
+      <div className="flex h-full flex-col items-start justify-center gap-3 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="flex items-center gap-3 transition-opacity hover:opacity-90"
+          className="flex min-w-0 items-center gap-2 transition-opacity hover:opacity-90 sm:gap-3"
         >
-          <ZayoLogo className="h-9 w-9" />
-          <div className="flex items-baseline gap-1.5">
-            <span className="text-base font-bold text-[#1A1C1E]">ZAYO</span>
-            <span className="text-base text-gray-600">Recruitment Tracker</span>
+          <ZayoLogo className="h-8 w-8 shrink-0 sm:h-9 sm:w-9" />
+          <div className="flex min-w-0 items-baseline gap-1.5">
+            <span className="text-sm font-bold text-[#1A1C1E] sm:text-base">ZAYO</span>
+            <span className="truncate text-sm text-gray-600 sm:text-base">Recruitment Tracker</span>
           </div>
         </Link>
 
-        <div className="flex items-center gap-2">
+        <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto">
           <RoleSwitcher currentRole={role} />
           <button
             type="button"
